@@ -83,4 +83,4 @@ jobs:
         if: always()
         uses: daun/playwright-report-summary@v4.0.0
         with:
-        report-file: playwright-report/results.json
+          report-file: playwright-report/results.json
