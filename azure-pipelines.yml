@@ -1,8 +1,3 @@
-# Node.js
-# Build a general Node.js project with npm.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
-
 trigger:
 - master
 
@@ -10,12 +5,27 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+# Clone do repositório
+- checkout: self
+
+# Instalação do Node
 - task: NodeTool@0
   inputs:
-    versionSpec: '20.x'
-  displayName: 'Install Node.js'
+    versionSpec: '24.x'
+  displayName: 'Instalar Node.js'
 
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+# Instalação do Yarn
+- script: npm install -g yarn
+  displayName: 'Instalar Yarn'
+
+# Instalação das dependências
+- script: yarn
+  displayName: 'Instalar dependências'
+
+# Instalação dos browsers do Playwright
+- script: yarn playwright install
+  displayName: 'Instalar Browsers do Playwright'
+
+# Execução dos testes E2E
+- script: yarn run e2e
+  displayName: 'Executar testes E2E'
