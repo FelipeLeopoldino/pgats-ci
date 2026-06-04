@@ -82,4 +82,5 @@ jobs:
       - name: Playwright Report Summary
         if: always()
         uses: daun/playwright-report-summary@v4.0.0
-        continue-on-error: true
+        with:
+        report-file: playwright-report/results.json
