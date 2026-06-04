@@ -1,5 +1,7 @@
-trigger:
-- master
+
+# Para Execução manual
+trigger: none
+pr: none
 
 pool:
   vmImage: ubuntu-latest
